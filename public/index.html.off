@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ELEIÇÕES 2015</title>
+<meta http-equiv="Content-Language" content="English" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+</head>
+<body>
+<div id="wrap">
+<div id="header">
+
+<h1><a href="/"><img src="title.png"></a></h1>
+<h2></h2>
+
+</div>
+
+<div class="middle">
+			
+<h2>NOTÍCIAS</h2>
+
+<UL>
+<LI><A href="#">Cavaco não acredita que PS ganhe as eleições</A></LI>
+<LI><A href="#">Portas demite-se revogavelmente da liderança do CDS</A></LI>
+</UL>
+</div>
+		
+<div class="right">
+		
+<h2>Também pode ver</h2>
+
+<ul>
+
+<li><a href="#">Resultados anteriores</a></li>
+<li><a href="#">Os canidatos</a></li>
+<li><a href="#">Os partidos</a></li>
+<li><a href="#">Círculos eleitorais (partidos)</a></li>
+
+</ul>
+		
+</div>
+
+<div id="clear"></div>
+
+</div>
+
+<div id="footer">
+Design by <a href="http://www.minimalistic-design.net">Minimalistic Design</a>
+</div>
+</body>
+</html>

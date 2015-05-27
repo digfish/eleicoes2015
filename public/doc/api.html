@@ -1,0 +1,569 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=windows-1252"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 4.3.4.1 (Windows)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2015-05-06T19:57:19.910000000"/>
+	<meta name="created" content="00:00:00">
+	<meta name="changed" content="2015-05-05T23:40:24.973000000">
+	<meta name="created" content="2015-05-05T20:43:31.029000000">
+	<meta name="changed" content="2015-05-05T22:58:13.099000000">
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script>
+	$(function() {
+		
+		$('a').attr('target','_blank');
+		
+	});
+	
+
+</script>
+	<style type="text/css">
+		@page { size: 8.27in 11.69in }
+		h1 { direction: inherit; color: #000000; text-align: center }
+		p { direction: inherit; color: #000000; line-height: 0.16in }
+		p.western { font-family: "Tahoma", sans-serif; font-size: 11pt }
+		p.cjk { font-size: 10pt }
+		pre { color: #000000 }
+		pre.cjk { font-family: "NSimSun", monospace }
+		h3 { direction: inherit; color: #000000 }
+		h3.western { font-size: 13pt }
+		h3.cjk { font-family: "SimSun" }
+		h3.ctl { font-family: "Mangal" }
+		h2 { direction: inherit; color: #008080 }
+		h2.cjk { font-family: "SimSun" }
+		h2.ctl { font-family: "Mangal" }
+	</style>
+</head>
+<body lang="en-US" text="#000000" dir="ltr" style="background: transparent">
+<h1 align="center">ELEI&Ccedil;&Otilde;ES 2015 - API</h1>
+<p class="western">&nbsp;Este documento on-line descreve sucintamente
+a API REST do eleicoes2015.my.to, acompanhada com links para exemplos
+e respectivo output.</p>
+<h2 class="western">NOT&Iacute;CIA</h2>
+<h3 class="western">GET /noticia</h3>
+<p class="western">par&acirc;metros poss&iacute;veis: 
+</p>
+<ul>
+	<li/>
+<p class="western"><u>vazio (sem par&acirc;metros)</u> &ndash;
+	devolve a listagem de todas as not&iacute;cias</p>
+	<li/>
+<p class="western"><u>term = xx</u> &ndash; pesquisa pela
+	ocorr&ecirc;ncia de xx no t&iacute;tulo de uma not&iacute;cia</p>
+	<li/>
+<p class="western"><u>source = yy</u> (twitter|google
+	news|legislaivas2015.pt)</p>
+</ul>
+<p class="western">Devolve (em JSON por omiss&atilde;o) as not&iacute;cias.</p>
+<p class="western">Exemplo:</p>
+<p class="western"><a href="http://eleicoes2015.my.to/api/noticia">http://eleicoes2015.my.to/api/noticia</a></p>
+<p class="western">ir&aacute; returnar o seguinte output:</p>
+<pre class="western">[
+    {
+        &quot;id&quot;: 1,
+        &quot;fonte&quot;: &quot;legislativas2015.pt&quot;,
+        &quot;titulo&quot;: &quot;PS apresentou cen\u00e1rio macroecon\u00f3mico&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/22\/ps-apresentou-cenario-macroeconomico\/&quot;,
+        &quot;data&quot;: &quot;2015-04-21 23:20:39&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/22\/ps-apresentou-cenario-macroeconomico\/&quot;
+    },
+    {
+        &quot;id&quot;: 2,
+        &quot;fonte&quot;: &quot;legislativas2015.pt&quot;,
+        &quot;titulo&quot;: &quot;Partido Livre muda nome e lan\u00e7a \u201ccandidatura cidad\u00e3\u201d&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/19\/partido-livre-muda-nome-e-lanca-candidatura-cidada\/&quot;,
+        &quot;data&quot;: &quot;2015-04-19 21:53:31&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/19\/partido-livre-muda-nome-e-lanca-candidatura-cidada\/&quot;
+    },
+    {
+        &quot;id&quot;: 3,
+        &quot;fonte&quot;: &quot;legislativas2015.pt&quot;,
+        &quot;titulo&quot;: &quot;PS sem dinheiro para rendas, \u00e1gua ou luz&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/18\/ps-sem-dinheiro-para-rendas-agua-ou-luz\/&quot;,
+        &quot;data&quot;: &quot;2015-04-18 12:57:41&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/18\/ps-sem-dinheiro-para-rendas-agua-ou-luz\/&quot;
+    },
+&hellip;
+]</pre><p class="western">
+Outro exemplo, usando o par&acirc;metro &ldquo;<u>source</u>&rdquo;,
+que permite filtrar pela fonte da not&iacute;cia:</p>
+<p class="western"><a href="http://eleicoes2015.my.to/api/noticia?source=Twitter">http://eleicoes2015.my.to/api/noticia?source=Twitter</a></p>
+<p class="western">retorna:</p>
+<pre class="western">[
+    {
+        &quot;id&quot;: 20,
+        &quot;fonte&quot;: &quot;Twitter&quot;,
+        &quot;titulo&quot;: &quot;Oposi\u00e7\u00e3o #argentina vence nas prim\u00e1rias estaduais de Mendoza e Santa F\u00e9 http:\/\/t.co\/ErtrGs97xd #elei&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/www.notimerica.com.br\/politica\/noticia-oposico-argentina-vence-nas-primarias-estaduais-mendoza-santa-fe-20150420195155.html&quot;,
+        &quot;data&quot;: &quot;2015-04-21 01:30:15&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/www.notimerica.com.br\/politica\/noticia-oposico-argentina-vence-nas-primarias-estaduais-mendoza-santa-fe-20150420195155.html&quot;
+    },
+    {
+        &quot;id&quot;: 21,
+        &quot;fonte&quot;: &quot;Twitter&quot;,
+        &quot;titulo&quot;: &quot;http:\/\/t.co\/XCztWoMM16: Entrevista - Pets nas #elei\u00e7\u00f5es http:\/\/t.co\/tFUuWoYVxY #entrevista #pets&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/BingeVideo.com&quot;,
+        &quot;data&quot;: &quot;2015-04-21 01:23:02&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/BingeVideo.com&quot;
+    },</pre><p class="western">
+Outras fontes de not&iacute;cias poss&iacute;veis s&atilde;o &ldquo;Google
+News&rdquo; ou &ldquo;legislativas2015.pt&rdquo; .</p>
+<p class="western">Outro termo de pesquisa &eacute; &ldquo;<u>term</u>&rdquo;:</p>
+<p class="western"><a href="http://eleicoes2015.my.to/api/noticia?term=Ant&oacute;nio+Costa">http://eleicoes2015.my.to/api/noticia?term=Ant&oacute;nio+Costa</a></p>
+<p class="western">que devolve apenas as not&iacute;cias que t&ecirc;m
+&ldquo;Ant&oacute;nio Costa&rdquo; no t&iacute;tulo:</p>
+<pre class="western">[
+    {
+        &quot;id&quot;: 6,
+        &quot;fonte&quot;: &quot;legislativas2015.pt&quot;,
+        &quot;titulo&quot;: &quot;Ant\u00f3nio Costa revela ter\u00e7a-feira propostas para governar&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/17\/antonio-costa-revela-terca-feira-propostas-para-governar\/&quot;,
+        &quot;data&quot;: &quot;2015-04-16 23:12:58&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/17\/antonio-costa-revela-terca-feira-propostas-para-governar\/&quot;
+    },
+    {
+        &quot;id&quot;: 72,
+        &quot;fonte&quot;: &quot;Google News&quot;,
+        &quot;titulo&quot;: &quot;Marco Ant\u00f3nio Costa diz que h\u00e1 \&quot;todas as raz\u00f5es\&quot; para a coliga\u00e7\u00e3o ... - Observador&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/news.google.com\/news\/url?sa=t&amp;fd=R&amp;ct2=pt-PT_pt&amp;usg=AFQjCNEEhnvKqKfyqAnfLU7MBehdPzDXpw&amp;clid=c3a7d30bb8a4878e06b80cf16b898331&amp;cid=52779264839373&amp;ei=7Eo_VZGbEZPaaZO7geAF&amp;url=http:\/\/observador.pt\/2015\/04\/27\/marco-antonio-costa-diz-que-ha-todas-as-razoes-para-a-coligacao-psdcds-pp\/&quot;,
+        &quot;data&quot;: &quot;2015-04-27 12:53:49&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/observador.pt\/2015\/04\/27\/marco-antonio-costa-diz-que-ha-todas-as-razoes-para-a-coligacao-psdcds-pp\/&quot;
+    },</pre><p class="western">
+Tamb&eacute;m &eacute; poss&iacute;vel limitar o n&uacute;mero de
+resultados e aplicar pagina&ccedil;&atilde;o aplicando os par&acirc;metros
+&ldquo;<u>page</u>&rdquo; e &ldquo;<u>qty</u>&rdquo;, indicando cada
+um, respectivamente o n&uacute;mero da p&aacute;gina e a quantidade
+de resulados por p&aacute;gina.</p>
+<p class="western"><a href="http://eleicoes2015.my.to/api/noticia?page=2&amp;qty=3">http://eleicoes2015.my.to/api/noticia?page=2&amp;qty=3</a></p>
+<pre class="western">{
+    &quot;3&quot;: {
+        &quot;id&quot;: 4,
+        &quot;fonte&quot;: &quot;legislativas2015.pt&quot;,
+        &quot;titulo&quot;: &quot;Bar\u00f3metro Eurosondagem Abril 2015&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/17\/barometro-eurosondagem-abril-2015\/&quot;,
+        &quot;data&quot;: &quot;2015-04-17 21:28:12&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/17\/barometro-eurosondagem-abril-2015\/&quot;
+    },
+    &quot;4&quot;: {
+        &quot;id&quot;: 5,
+        &quot;fonte&quot;: &quot;legislativas2015.pt&quot;,
+        &quot;titulo&quot;: &quot;PCP apresenta programa eleitoral a 7 de Julho&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/17\/pcp-apresenta-programa-eleitoral-a-7-de-julho\/&quot;,
+        &quot;data&quot;: &quot;2015-04-17 06:15:10&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/17\/pcp-apresenta-programa-eleitoral-a-7-de-julho\/&quot;
+    },
+    &quot;5&quot;: {
+        &quot;id&quot;: 6,
+        &quot;fonte&quot;: &quot;legislativas2015.pt&quot;,
+        &quot;titulo&quot;: &quot;Ant\u00f3nio Costa revela ter\u00e7a-feira propostas para governar&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/17\/antonio-costa-revela-terca-feira-propostas-para-governar\/&quot;,
+        &quot;data&quot;: &quot;2015-04-16 23:12:58&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/17\/antonio-costa-revela-terca-feira-propostas-para-governar\/&quot;
+    }
+} </pre><p class="western">
+&Eacute; poss&iacute;vel especificar que seja retornado XML em vez de
+JSON especificando nos headers do Request o campo &ldquo;Accept:
+application/xml&rdquo;</p>
+<p class="western"><a href="http://eleicoes2015.my.to/api/noticia?format=XML">http://eleicoes2015.my.to/api/noticia</a></p>
+<pre class="western">&lt;response&gt;
+&lt;response&gt;
+&lt;id&gt;1&lt;/id&gt;
+&lt;fonte&gt;legislativas2015.pt&lt;/fonte&gt;
+&lt;titulo&gt;PS apresentou cen&aacute;rio macroecon&oacute;mico&lt;/titulo&gt;
+&lt;original_url&gt;
+http://www.legislativas2015.pt/2015/04/22/ps-apresentou-cenario-macroeconomico/
+&lt;/original_url&gt;
+&lt;data&gt;2015-04-21 23:20:39&lt;/data&gt;
+&lt;final_url&gt;
+http://www.legislativas2015.pt/2015/04/22/ps-apresentou-cenario-macroeconomico/
+&lt;/final_url&gt;
+&lt;/response&gt;
+&lt;response&gt;
+&lt;id&gt;2&lt;/id&gt;
+&lt;fonte&gt;legislativas2015.pt&lt;/fonte&gt;
+&lt;titulo&gt;
+Partido Livre muda nome e lan&ccedil;a &ldquo;candidatura cidad&atilde;&rdquo;
+&lt;/titulo&gt;
+&lt;original_url&gt;
+http://www.legislativas2015.pt/2015/04/19/partido-livre-muda-nome-e-lanca-candidatura-cidada/
+&lt;/original_url&gt;
+&lt;data&gt;2015-04-19 21:53:31&lt;/data&gt;
+&lt;final_url&gt;
+http://www.legislativas2015.pt/2015/04/19/partido-livre-muda-nome-e-lanca-candidatura-cidada/
+&lt;/final_url&gt;
+&lt;/response&gt;</pre><h3 class="western">
+GET noticia/:id</h3>
+<p class="western">Devolve a not&iacute;cia de id :id</p>
+<p class="western"><a href="http://eleicoes2015.my.to/api/noticia/12">http://eleicoes2015.my.to/api/noticia/12</a></p>
+<pre class="western">{
+    &quot;id&quot;: 12,
+    &quot;fonte&quot;: &quot;Google News&quot;,
+    &quot;titulo&quot;: &quot;CDS renova presen\u00e7a na Internet antes das elei\u00e7\u00f5es - Observador&quot;,
+    &quot;original_url&quot;: &quot;http:\/\/news.google.com\/news\/url?sa=t&amp;fd=R&amp;ct2=pt-PT_pt&amp;usg=AFQjCNFuq5IJtWEnNfM31I8wfw2UnYn-OQ&amp;clid=c3a7d30bb8a4878e06b80cf16b898331&amp;cid=52779256990968&amp;ei=77E3VfCbMOqNaanigfAJ&amp;url=http:\/\/observador.pt\/2015\/04\/22\/cds-renova-presenca-na-internet-antes-das-eleicoes\/&quot;,
+    &quot;data&quot;: &quot;2015-04-22 13:32:54&quot;,
+    &quot;final_url&quot;: &quot;http:\/\/observador.pt\/2015\/04\/22\/cds-renova-presenca-na-internet-antes-das-eleicoes\/&quot;
+}</pre><h3 class="western">
+POST noticia</h3>
+<p class="western">Insere uma nova not&iacute;cia. Os valores dos
+campos da not&iacute;cia s&atilde;o enviados sob a forma de um
+objecto em JSON:</p>
+<pre class="western">{
+    &quot;fonte&quot;: &quot;Teste&quot;,
+    &quot;titulo&quot;: &quot;Cavaco Silva anucia finalmente a data das elei&ccedil;&otilde;es&quot;,
+    &quot;data&quot;: &quot;2015-05-05 13:32:54&quot;,
+    &quot;final_url&quot;: &quot;http://asminhasnoticias.com/&quot;
+}</pre><p class="western">
+<b>Nota:</b> n&atilde;o se deve especificar qualquer campo &ldquo;id&rdquo;
+nos campos do array JSON, pois uma vez que o registo &eacute;
+completamente novo, tal resultar&aacute; num erro.</p>
+<p class="western">Neste caso a not&iacute;cia &eacute; inserida com
+sucesso se a resposta contiver o novo id da not&iacute;cia inserida:</p>
+<pre class="western">{
+    &quot;fonte&quot;: &quot;Teste&quot;,
+    &quot;titulo&quot;: &quot;Cavaco Silva anucia finalmente a data das elei\u00e7\u00f5es&quot;,
+    &quot;data&quot;: &quot;2015-05-05 13:32:54&quot;,
+    &quot;final_url&quot;: &quot;http:\/\/asminhasnoticias.com\/&quot;,
+    <b>&quot;id&quot;: 162</b>
+}</pre><h3 class="western">
+PUT noticia/:id</h3>
+<p class="western">Actualiza a informa&ccedil;&atilde;o relativa a
+uma not&iacute;cia j&aacute; presente no sistema. Neste caso deve-se
+acrescentar o ID da not&iacute;cia no URL que se pretende actualizar:</p>
+<p class="western">Toda a nova informa&ccedil;&atilde;o relativa &agrave;
+not&iacute;cia deve seguir em formato JSON no corpo da mensagem</p>
+<p class="western">Exemplo: <b>PUT
+http://eleicoes2015.my.to/api/noticia/162</b></p>
+<pre class="western">{
+    &quot;fonte&quot;: &quot;Teste&quot;,
+    &quot;titulo&quot;: &quot;Cavaco Silva enganou-se na data das elei&ccedil;&otilde;es!&quot;,
+    &quot;data&quot;: &quot;2015-05-07 13:32:54&quot;,
+    &quot;final_url&quot;: &quot;http://asminhasnoticias.com/&quot;
+}
+A resposta conter&aacute; o ID correcto em caso de &ecirc;xito:
+{
+    &quot;id&quot;: 162,
+    &quot;fonte&quot;: &quot;Teste&quot;,
+    &quot;titulo&quot;: &quot;Cavaco Silva enganou-se na data das elei\u00e7\u00f5es&quot;,
+    &quot;original_url&quot;: null,
+    &quot;data&quot;: &quot;2015-05-07 13:32:54&quot;,
+    &quot;final_url&quot;: &quot;http:\/\/asminhasnoticias.com\/&quot;
+}</pre><h3 class="western">
+DELETE noticia/:id</h3>
+<p class="western">Para apagar uma not&iacute;cia usa-se o comando
+DELETE da seguinte forma, por exemplo:</p>
+<p class="western"><b>DELETE
+http://eleicoes2015.my.to/api/noticia/162</b></p>
+<p class="western">Em caso de sucesso, o registo na BD apagado &eacute;
+devolvido:</p>
+<pre class="western">{
+    &quot;id&quot;: 162,
+    &quot;fonte&quot;: &quot;Teste&quot;,
+    &quot;titulo&quot;: &quot;Cavaco Silva enganou-se na data das elei\u00e7\u00f5es&quot;,
+    &quot;original_url&quot;: null,
+    &quot;data&quot;: &quot;2015-05-07 13:32:54&quot;,
+    &quot;final_url&quot;: &quot;http:\/\/asminhasnoticias.com\/&quot;
+}</pre><p class="western">
+Se fizermos um GET http://eleicoes2015.my.to/api/noticia/162 a
+resposta ser&aacute;:</p>
+<pre class="western">{
+
+}</pre><p class="western">
+O que prova que a not&iacute;cia foi correctamente apagada !</p>
+<h2 class="western">PARTIDO</h2>
+<h3 class="western">GET partido/</h3>
+<p class="western">Retorna uma lista de todas os partidos, aceita o
+mesmo tipo de par&acirc;metros considerados acima para o caso do
+recurso &ldquo;noticias&rdquo;, com a excep&ccedil;&atilde;o do
+par&acirc;metro &ldquo;source&rdquo;.</p>
+<p class="western"><a href="http://eleicoes2015.my.to/api/partido">http://eleicoes2015.my.to/api/partido</a>
+</p>
+<pre class="western">[
+    {
+        &quot;id&quot;: 1,
+        &quot;nome&quot;: &quot;Movimento Alternativa Socialista&quot;,
+        &quot;lider&quot;: &quot;Gil Garcia&quot;,
+        &quot;num_militantes&quot;: 0,
+        &quot;endereco_sede&quot;: &quot;&quot;,
+        &quot;tipo&quot;: &quot;Esquerda&quot;,
+        &quot;historia&quot;: &quot;&quot;,
+        &quot;sigla&quot;: &quot;MAS&quot;,
+        &quot;ficheiro_foto&quot;: &quot;http:\/\/expresso.sapo.pt\/imv\/1\/918\/714\/gilgarciaab3-3cad.jpg&quot;,
+        &quot;ano_fundacao&quot;: &quot;2000&quot;,
+        &quot;deleted_at&quot;: null,
+        &quot;wiki_url&quot;: &quot;http:\/\/pt.wikipedia.org\/wiki\/Movimento_Alternativa_Socialista&quot;
+    },
+    {
+        &quot;id&quot;: 2,
+        &quot;nome&quot;: &quot;Bloco de Esquerda&quot;,
+        &quot;lider&quot;: &quot;Catarina Martins\/Jo\u00e3o Semedo&quot;,
+        &quot;num_militantes&quot;: 0,
+        &quot;endereco_sede&quot;: &quot;&quot;,
+        &quot;tipo&quot;: &quot;Esquerda&quot;,
+        &quot;historia&quot;: &quot;&quot;,
+        &quot;sigla&quot;: &quot;BE&quot;,
+        &quot;ficheiro_foto&quot;: &quot;http:\/\/www.jornalacores9.net\/wp-content\/uploads\/2013\/02\/Os-bloquistas-Jo%C3%A3o-Semedo-e-Catarina-Martins.jpg&quot;,
+        &quot;ano_fundacao&quot;: &quot;1998&quot;,
+        &quot;deleted_at&quot;: null,
+        &quot;wiki_url&quot;: &quot;http:\/\/pt.wikipedia.org\/wiki\/Bloco_de_Esquerda_%28Portugal%29&quot;
+    },</pre><h3 class="western">
+GET partido/:id</h3>
+<p class="western"><a href="http://eleicoes2015.my.to/api/partido/12">http://eleicoes2015.my.to/api/partido/12
+</a>
+</p>
+<p class="western">Devolve todos os campos relativos ao partido de ID
+:id</p>
+<pre class="western">{
+    &quot;id&quot;: 3,
+    &quot;nome&quot;: &quot;Partido Comunista Portugu\u00eas&quot;,
+    &quot;lider&quot;: &quot;Jer\u00f3nimo de Sousa&quot;,
+    &quot;num_militantes&quot;: 0,
+    &quot;endereco_sede&quot;: &quot;&quot;,
+    &quot;tipo&quot;: &quot;Esquerda&quot;,
+    &quot;historia&quot;: &quot;&quot;,
+    &quot;sigla&quot;: &quot;PCP&quot;,
+    &quot;ficheiro_foto&quot;: &quot;http:\/\/www.dinheirovivo.pt\/storage\/DV\/2014\/big\/ng3354661.jpg&quot;,
+    &quot;ano_fundacao&quot;: &quot;1921&quot;,
+    &quot;deleted_at&quot;: null,
+    &quot;wiki_url&quot;: &quot;http:\/\/pt.wikipedia.org\/wiki\/Partido_Comunista_Portugu%C3%AAs&quot;
+}</pre><h3 class="western">
+POST partido</h3>
+<p class="western">Cria um novo partido no sistema. &Agrave;
+semelhan&ccedil;a do caso das not&iacute;cias deve-se inserir todos
+os campos <b>com a excep&ccedil;&atilde;o do campo ID</b>.</p>
+<h3 class="western">PUT partido/:id</h3>
+<p class="western">Actualiiza o registo do partido de id :id .</p>
+<h3 class="western">DELETE partido/:id</h3>
+<p class="western">Elimina o registo de partido ID :id .</p>
+<h2 class="western">TAGS DA NOTICIA</h2>
+<h3 class="western">GET noticia/:noticia_id/tag</h3>
+<p class="western">Devolve todas as tags associadas &agrave; not&iacute;cia
+de ID :noticia_id .</p>
+<p class="western"><a href="http://eleicoes2015.my.to/api/noticia/50/tag">http://eleicoes2015.my.to/api/noticia/50/tag</a></p>
+<pre class="western">[
+  {
+    &quot;id&quot;: 3,
+    &quot;nome&quot;: &quot;Ant&oacute;nio Costa&quot;
+  },
+  {
+    &quot;id&quot;: 26,
+    &quot;nome&quot;: &quot;Pedro Passos Coelho&quot;
+  },</pre><h3 class="western">
+GET noticia/:id/tag/:tag_id</h3>
+<p class="western">Devolve apenas a tag de ID :tag_id relativa &agrave;
+not&iacute;cia de tag :noticia_id.</p>
+<p class="western">Aproveitando o exemplo, suponhamos que queremos
+apenas a tag de id 26:</p>
+<p class="western"><a href="http://eleicoes2015.my.to/api/noticia/50/tag/26">http://eleicoes2015.my.to/api/noticia/50/tag/26</a></p>
+<pre class="western">[
+  {
+    &quot;noticias_id&quot;: 50,
+    &quot;tags_id&quot;: 26,
+    &quot;id&quot;: 26,
+    &quot;nome&quot;: &quot;Pedro Passos Coelho&quot;
+  }
+]
+</pre><h3 class="western">
+POST noticia/:noticia_id/tag/</h3>
+<p class="western">Cria uma associa&ccedil;&atilde;o com tags para
+associar &agrave; not&iacute;cia de ID :noticia_id. Em caso de
+sucesso, &eacute; devolvida a not&iacute;cia completa conjuntamente
+com todas as tags</p>
+<p class="western">http://eleicoes2015.my.to/api/noticia/100/tag</p>
+<pre class="western">{
+ &quot;tags&quot;: [ 1000 , 1001]
+}
+</pre><p class="western">
+Ir&aacute; retornar:</p>
+<pre class="western">{
+    &quot;id&quot;: 100,
+    &quot;fonte&quot;: &quot;Google News&quot;,
+    &quot;titulo&quot;: &quot;Como madeirense, residente no continente,... - Di\u00e1rio de Not\u00edcias - Funchal&quot;,
+    &quot;original_url&quot;: &quot;http:\/\/news.google.com\/news\/url?sa=t&amp;fd=R&amp;ct2=pt-PT_pt&amp;usg=AFQjCNGclmqcTPkGWB_xoTwjfUZylNxpbw&amp;clid=c3a7d30bb8a4878e06b80cf16b898331&amp;ei=ZhxCVbLjLeniaZPwgZgF&amp;url=http:\/\/www.dnoticias.pt\/impressa\/diario\/opiniao\/513650-as-promessas-%2507sao-para-cumprir&quot;,
+    &quot;data&quot;: &quot;2015-04-30 11:57:34&quot;,
+    &quot;final_url&quot;: &quot;http:\/\/www.dnoticias.pt\/impressa\/diario\/opiniao\/513650-as-promessas-%07sao-para-cumprir&quot;,
+    &quot;tags&quot;: [
+        {
+            &quot;id&quot;: 349,
+            &quot;nome&quot;: &quot;Regime Fiscal&quot;
+        },
+        {
+            &quot;id&quot;: 359,
+            &quot;nome&quot;: &quot;Cavaco Silva&quot;
+        },
+        {
+            &quot;id&quot;: 505,
+            &quot;nome&quot;: &quot;Miguel Albuquerque&quot;
+        },
+        {
+            &quot;id&quot;: 506,
+            &quot;nome&quot;: &quot;Porto Santo&quot;
+        },
+        {
+            &quot;id&quot;: 752,
+            &quot;nome&quot;: &quot;Assembleia Legislativa&quot;
+        },
+        {
+            &quot;id&quot;: 753,
+            &quot;nome&quot;: &quot;regi\u00e3o aut\u00f3noma&quot;
+        },
+        {
+            &quot;id&quot;: 754,
+            &quot;nome&quot;: &quot;Presidente Miguel Albuquerque&quot;
+        },
+        {
+            &quot;id&quot;: 755,
+            &quot;nome&quot;: &quot;palavra garantia&quot;
+        },
+        {
+            &quot;id&quot;: 756,
+            &quot;nome&quot;: &quot;s\u00e9ria disponibilidade&quot;
+        },
+        {
+            &quot;id&quot;: 757,
+            &quot;nome&quot;: &quot;Comiss\u00e3o Eventual.\u00a0&quot;
+        },
+        {
+            &quot;id&quot;: 758,
+            &quot;nome&quot;: &quot;Estatuto Pol\u00edtico-Administrativo&quot;
+        },
+        {
+            &quot;id&quot;: 759,
+            &quot;nome&quot;: &quot;Zona Franca&quot;
+        },
+        {
+            &quot;id&quot;: 760,
+            &quot;nome&quot;: &quot;Lei Eleitoral&quot;
+        },
+        {
+            &quot;id&quot;: 761,
+            &quot;nome&quot;: &quot;conversa demagogia&quot;
+        },
+        {
+            &quot;id&quot;: 762,
+            &quot;nome&quot;: &quot;pior concelho&quot;
+        },
+<font color="#ff3366">        <b>{</b></font>
+<font color="#ff3366">            <b>&quot;id&quot;: 1000,</b></font>
+<font color="#ff3366">            <b>&quot;nome&quot;: &quot;declara\u00e7\u00f5es de\u00a0panagiotis lafazanis&quot;</b></font>
+<font color="#ff3366">        <b>},</b></font>
+<font color="#ff3366">        <b>{</b></font>
+<font color="#ff3366">            <b>&quot;id&quot;: 1001,</b></font>
+<font color="#ff3366">            <b>&quot;nome&quot;: &quot;jornal kathimerini&quot;</b></font>
+<font color="#ff3366">        <b>},</b></font>
+        {
+            &quot;id&quot;: 1227,
+            &quot;nome&quot;: null
+        }
+    ]
+}</pre><p class="western">
+As tags de ID 1000 e 1001 foram associadas com a noticia !</p>
+<h3 class="western">DELETE noticia/:noticia_id/tag/:tag_id</h3>
+<p class="western">Elimina a associa&ccedil;&atilde;o da noticia
+:noticia_id com a tag :tag_id .</p>
+<p class="western">Por exemplo, se quisermos eliminar a associa&ccedil;&atilde;o
+da not&iacute;cia 1000 com as tags de IDs 1000 e 1001 efectuadas pelo
+comando anterior &ldquo;POST&rdquo; &eacute; necess&aacute;rio</p>
+<p class="western">fazer duas invoca&ccedil;&otilde;es ao comando:</p>
+<p class="western">DELETE
+<a href="http://eleicoes2015.my.to/api/noticia/100/tag/100">http://eleicoes2015.my.to/api/noticia/100/tag/100</a>0</p>
+<p class="western">e</p>
+<p class="western">DELETE
+<a href="http://eleicoes2015.my.to/api/noticia/100/tag/1001">http://eleicoes2015.my.to/api/noticia/100/tag/1001</a></p>
+<p class="western"><br/>
+<br/>
+
+</p>
+<h2 class="western">TAGS</h2>
+<h3 class="western">GET tag/</h3>
+<p class="western">Lista todas as tags registadas no sistema. Os
+par&acirc;metros que se aplicam ao recurso &ldquo;noticia&rdquo;
+tamb&eacute;m se aplicam aqui.</p>
+<p class="western">Entre os campos devolvidos, inclui-se a ocorr&ecirc;ncia
+relativa a cada tag. A lista aparece ordenada pelo n&uacute;mero de
+ocorr&ecirc;ncias de cada tag.</p>
+<p class="western"><a href="http://eleicoes2015.my.to/api/tag/">http://eleicoes2015.my.to/api/tag/</a></p>
+<pre class="western">[
+    {
+        &quot;count&quot;: 29,
+        &quot;nome&quot;: &quot;Ant&oacute;nio Costa&quot;,
+        &quot;id&quot;: 3
+    },
+    {
+        &quot;count&quot;: 24,
+        &quot;nome&quot;: &quot;Uni&atilde;o Europeia&quot;,
+        &quot;id&quot;: 65
+    },
+    {
+        &quot;count&quot;: 19,
+        &quot;nome&quot;: &quot;Pedro Passos Coelho&quot;,
+        &quot;id&quot;: 26
+    },</pre><h3 class="western">
+GET tag/:id</h3>
+<p class="western">Devolve apenas a tag de ID :id, incluindo o seu
+n&uacute;mero de ocorr&ecirc;ncias.</p>
+<p class="western">Exemplo: mostrar a tag de ID 3 (&ldquo;Ant&oacute;nio
+Costa&rdquo;)</p>
+<p class="western"><a href="http://eleicoes2015.my.to/api/tag/3">http://eleicoes2015.my.to/api/tag/3</a></p>
+<pre class="western">[
+    {
+        &quot;count&quot;: 29,
+        &quot;nome&quot;: &quot;Ant&oacute;nio Costa&quot;,
+        &quot;id&quot;: 3
+    }
+]</pre><p class="western">
+O par&acirc;metro &ldquo;count&rdquo; refere que esta tag ocorre em
+29 not&iacute;cias.</p>
+<h3 class="western">POST tag</h3>
+<p class="western">Insere uma nova tag no sistema.</p>
+<p class="western">Exemplo:</p>
+<p class="western">Invocando <a href="http://eleicoes2015.my.to/api/tag/">http://eleicoes2015.my.to/api/tag/</a>
+com a seguinte mensagem JSON</p>
+<pre class="western">{
+ &quot;nome&quot;: &quot;MPT&quot;
+}
+</pre><p class="western">
+ir&aacute; despoletar a cria&ccedil;&atilde;o da tag no sistema,
+devolvendo:</p>
+<pre class="western">    {
+        &quot;count&quot;: 0,
+        &quot;nome&quot;: &quot;MPT&quot;,
+        &quot;id&quot;: 5000
+    },
+
+</pre><h3 class="western">
+PUT tag/:id</h3>
+<p class="western">Actualiza a palavra da tag :id com uma nova
+palavra.</p>
+<p class="western">PUT http://eleicoes2015.my.to/api/tag/3</p>
+<pre class="western">{
+ &quot;nome&quot;: &quot;Rui Costa&quot;
+}
+</pre><p class="western">
+Ir&aacute; actuializar o texto da tag &ldquo;Ant&oacute;nio Costa&rdquo;
+com &ldquo;Rui Costa&rdquo;</p>
+<h3 class="western">DELETE tag/:id</h3>
+<p class="western">Apaga a tag de ID :id.</p>
+<p class="western">Exemplo:</p>
+<p class="western">PUT <a href="http://eleicoes2015.my.to/api/tag/3">http://eleicoes2015.my.to/api/tag/3</a></p>
+<p class="western">Ir&aacute; apagar a tag de ID 3.</p>
+<p class="western"><br/>
+<br/>
+
+</p>
+<p class="western"><br/>
+<br/>
+
+</p>
+<p class="western"><br/>
+<br/>
+
+</p>
+<p class="western"><br/>
+<br/>
+
+</p>
+</body>
+</html>

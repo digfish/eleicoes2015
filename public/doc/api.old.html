@@ -1,0 +1,586 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=windows-1252"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 4.3.4.1 (Windows)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2015-05-04T23:34:57.052000000"/>
+	<meta name="created" content="00:00:00">
+	<meta name="changed" content="00:00:00">
+	<style type="text/css">
+		td p { color: #000000 }
+		h1 { color: #000000 }
+		p { color: #000000 }
+		p.msonormal { margin-bottom: 0.14in; font-family: "Calibri", sans-serif; font-size: 11pt; line-height: 115% }
+		p.default { margin-bottom: 0in }
+		pre { color: #000000 }
+		pre.cjk { font-family: "NSimSun", monospace }
+	</style>
+</head>
+<body lang="pt-PT" text="#000000" dir="ltr" style="background: transparent">
+<p class="msonormal" style="line-height: 115%"><font size="7" style="font-size: 36pt">ELEI&Ccedil;&Otilde;ES
+2015 - API</font></p>
+<p class="msonormal">&nbsp;Este documento on-line descreve
+sucintamente a API REST do eleicoes2015.my.to, acompanhada com links
+para exemplos e respectivo output.</p>
+<h1>NOT&Iacute;CIA</h1>
+<p style="margin-top: 0.17in; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">GET
+/noticia</font></font></p>
+<p>par&acirc;metros poss&iacute;veis: 
+</p>
+<ul>
+	<li/>
+<p>vazio &ndash; devolve a listagem de todas as not&iacute;cias</p>
+	<li/>
+<p>term = xx &ndash; pesquisa pela ocorr&ecirc;ncia de xx no
+	t&iacute;tulo de uma not&iacute;cia</p>
+	<li/>
+<p>source = yy (twitter|google news|legislaivas2015)</p>
+</ul>
+<p>Devolve (em JSON por omiss&atilde;o) as not&iacute;cias.</p>
+<p>Exemplo:</p>
+<p><a href="http://eleicoes2015.my.to/api/noticia">http://eleicoes2015.my.to/api/noticia</a></p>
+<p>ir&aacute; returnar o seguinte output:</p>
+<pre class="western">[
+    {
+        &quot;id&quot;: 1,
+        &quot;fonte&quot;: &quot;legislativas2015.pt&quot;,
+        &quot;titulo&quot;: &quot;PS apresentou cen\u00e1rio macroecon\u00f3mico&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/22\/ps-apresentou-cenario-macroeconomico\/&quot;,
+        &quot;data&quot;: &quot;2015-04-21 23:20:39&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/22\/ps-apresentou-cenario-macroeconomico\/&quot;
+    },
+    {
+        &quot;id&quot;: 2,
+        &quot;fonte&quot;: &quot;legislativas2015.pt&quot;,
+        &quot;titulo&quot;: &quot;Partido Livre muda nome e lan\u00e7a \u201ccandidatura cidad\u00e3\u201d&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/19\/partido-livre-muda-nome-e-lanca-candidatura-cidada\/&quot;,
+        &quot;data&quot;: &quot;2015-04-19 21:53:31&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/19\/partido-livre-muda-nome-e-lanca-candidatura-cidada\/&quot;
+    },
+    {
+        &quot;id&quot;: 3,
+        &quot;fonte&quot;: &quot;legislativas2015.pt&quot;,
+        &quot;titulo&quot;: &quot;PS sem dinheiro para rendas, \u00e1gua ou luz&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/18\/ps-sem-dinheiro-para-rendas-agua-ou-luz\/&quot;,
+        &quot;data&quot;: &quot;2015-04-18 12:57:41&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/18\/ps-sem-dinheiro-para-rendas-agua-ou-luz\/&quot;
+    },
+&hellip;
+]</pre><p>
+Outro exemplo, usando o par&acirc;metro &ldquo;source&rdquo;, que
+permite filtrar pela fonte da not&iacute;cia:</p>
+<p><a href="http://eleicoes2015.my.to/api/noticia?source=Twitter">http://eleicoes2015.my.to/api/noticia?source=Twitter</a></p>
+<p>retorna:</p>
+<pre class="western" style="margin-bottom: 0.2in">[
+    {
+        &quot;id&quot;: 20,
+        &quot;fonte&quot;: &quot;Twitter&quot;,
+        &quot;titulo&quot;: &quot;Oposi\u00e7\u00e3o #argentina vence nas prim\u00e1rias estaduais de Mendoza e Santa F\u00e9 http:\/\/t.co\/ErtrGs97xd #elei&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/www.notimerica.com.br\/politica\/noticia-oposico-argentina-vence-nas-primarias-estaduais-mendoza-santa-fe-20150420195155.html&quot;,
+        &quot;data&quot;: &quot;2015-04-21 01:30:15&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/www.notimerica.com.br\/politica\/noticia-oposico-argentina-vence-nas-primarias-estaduais-mendoza-santa-fe-20150420195155.html&quot;
+    },
+    {
+        &quot;id&quot;: 21,
+        &quot;fonte&quot;: &quot;Twitter&quot;,
+        &quot;titulo&quot;: &quot;http:\/\/t.co\/XCztWoMM16: Entrevista - Pets nas #elei\u00e7\u00f5es http:\/\/t.co\/tFUuWoYVxY #entrevista #pets&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/BingeVideo.com&quot;,
+        &quot;data&quot;: &quot;2015-04-21 01:23:02&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/BingeVideo.com&quot;
+    },</pre><p>
+Outras fontes de not&iacute;cias poss&iacute;veis s&atilde;o &ldquo;Google
+News&rdquo; ou &ldquo;legislativas2015.pt&rdquo; .</p>
+<p>Outro termo de pesquisa &eacute; &ldquo;search&rdquo;:</p>
+<p><a href="http://eleicoes2015.my.to/api/noticia?term=Ant&oacute;nio+Costa">http://eleicoes2015.my.to/api/noticia?term=Ant&oacute;nio+Costa</a></p>
+<p>que devolve apenas as not&iacute;cias que t&ecirc;m &ldquo;Ant&oacute;nio
+Costa&rdquo; no t&iacute;tulo:</p>
+<pre class="western" style="margin-bottom: 0.2in">[
+    {
+        &quot;id&quot;: 6,
+        &quot;fonte&quot;: &quot;legislativas2015.pt&quot;,
+        &quot;titulo&quot;: &quot;Ant\u00f3nio Costa revela ter\u00e7a-feira propostas para governar&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/17\/antonio-costa-revela-terca-feira-propostas-para-governar\/&quot;,
+        &quot;data&quot;: &quot;2015-04-16 23:12:58&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/17\/antonio-costa-revela-terca-feira-propostas-para-governar\/&quot;
+    },
+    {
+        &quot;id&quot;: 72,
+        &quot;fonte&quot;: &quot;Google News&quot;,
+        &quot;titulo&quot;: &quot;Marco Ant\u00f3nio Costa diz que h\u00e1 \&quot;todas as raz\u00f5es\&quot; para a coliga\u00e7\u00e3o ... - Observador&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/news.google.com\/news\/url?sa=t&amp;fd=R&amp;ct2=pt-PT_pt&amp;usg=AFQjCNEEhnvKqKfyqAnfLU7MBehdPzDXpw&amp;clid=c3a7d30bb8a4878e06b80cf16b898331&amp;cid=52779264839373&amp;ei=7Eo_VZGbEZPaaZO7geAF&amp;url=http:\/\/observador.pt\/2015\/04\/27\/marco-antonio-costa-diz-que-ha-todas-as-razoes-para-a-coligacao-psdcds-pp\/&quot;,
+        &quot;data&quot;: &quot;2015-04-27 12:53:49&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/observador.pt\/2015\/04\/27\/marco-antonio-costa-diz-que-ha-todas-as-razoes-para-a-coligacao-psdcds-pp\/&quot;
+    },</pre><p>
+Tamb&eacute;m &eacute; poss&iacute;vel limitar o n&uacute;mero de
+resultados e aplicar pagina&ccedil;&atilde;o aplicando os par&acirc;metros
+&ldquo;page&rdquo; e &ldquo;qty&rdquo;, indicando cada um,
+respectivamente o n&uacute;mero da p&aacute;gina e a quantidade de
+resulados por p&aacute;gina.</p>
+<p><a href="http://eleicoes2015.my.to/api/noticia?page=2&amp;qty=3">http://eleicoes2015.my.to/api/noticia?page=2&amp;qty=3</a></p>
+<pre class="western">{
+    &quot;3&quot;: {
+        &quot;id&quot;: 4,
+        &quot;fonte&quot;: &quot;legislativas2015.pt&quot;,
+        &quot;titulo&quot;: &quot;Bar\u00f3metro Eurosondagem Abril 2015&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/17\/barometro-eurosondagem-abril-2015\/&quot;,
+        &quot;data&quot;: &quot;2015-04-17 21:28:12&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/17\/barometro-eurosondagem-abril-2015\/&quot;
+    },
+    &quot;4&quot;: {
+        &quot;id&quot;: 5,
+        &quot;fonte&quot;: &quot;legislativas2015.pt&quot;,
+        &quot;titulo&quot;: &quot;PCP apresenta programa eleitoral a 7 de Julho&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/17\/pcp-apresenta-programa-eleitoral-a-7-de-julho\/&quot;,
+        &quot;data&quot;: &quot;2015-04-17 06:15:10&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/17\/pcp-apresenta-programa-eleitoral-a-7-de-julho\/&quot;
+    },
+    &quot;5&quot;: {
+        &quot;id&quot;: 6,
+        &quot;fonte&quot;: &quot;legislativas2015.pt&quot;,
+        &quot;titulo&quot;: &quot;Ant\u00f3nio Costa revela ter\u00e7a-feira propostas para governar&quot;,
+        &quot;original_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/17\/antonio-costa-revela-terca-feira-propostas-para-governar\/&quot;,
+        &quot;data&quot;: &quot;2015-04-16 23:12:58&quot;,
+        &quot;final_url&quot;: &quot;http:\/\/www.legislativas2015.pt\/2015\/04\/17\/antonio-costa-revela-terca-feira-propostas-para-governar\/&quot;
+    }
+}</pre><p>
+Um &uacute;ltimo par&acirc;metro &eacute; &ldquo;format=xml&rdquo;
+que ir&aacute; fazer com que o output venha em XML, exemplo:</p>
+<p><a href="http://eleicoes2015.my.to/api/noticia?format=XML">http://eleicoes2015.my.to/api/noticia?format=XML</a></p>
+<pre class="western">&lt;response&gt;</pre>
+<table cellpadding="2" cellspacing="2">
+	<tr>
+		<td style="border: none; padding: 0in">
+			<pre class="western">&lt;response&gt;
+&lt;id&gt;1&lt;/id&gt;
+&lt;fonte&gt;legislativas2015.pt&lt;/fonte&gt;
+&lt;titulo&gt;PS apresentou cen&aacute;rio macroecon&oacute;mico&lt;/titulo&gt;</pre>
+			<table cellpadding="2" cellspacing="2">
+				<tr>
+					<td style="border: none; padding: 0in">
+						<pre class="western">&lt;original_url&gt;
+http://www.legislativas2015.pt/2015/04/22/ps-apresentou-cenario-macroeconomico/
+&lt;/original_url&gt;</pre>
+					</td>
+				</tr>
+			</table>
+			<pre class="western">&lt;data&gt;2015-04-21 23:20:39&lt;/data&gt;</pre>
+			<table cellpadding="2" cellspacing="2">
+				<tr>
+					<td style="border: none; padding: 0in">
+						<pre class="western">&lt;final_url&gt;
+http://www.legislativas2015.pt/2015/04/22/ps-apresentou-cenario-macroeconomico/
+&lt;/final_url&gt;</pre>
+					</td>
+				</tr>
+			</table>
+			<pre class="western">&lt;/response&gt;</pre>
+		</td>
+	</tr>
+</table>
+<table cellpadding="2" cellspacing="2">
+	<tr>
+		<td style="border: none; padding: 0in">
+			<pre class="western">&lt;response&gt;
+&lt;id&gt;2&lt;/id&gt;
+&lt;fonte&gt;legislativas2015.pt&lt;/fonte&gt;</pre>
+			<table cellpadding="2" cellspacing="2">
+				<tr>
+					<td style="border: none; padding: 0in">
+						<pre class="western">&lt;titulo&gt;
+Partido Livre muda nome e lan&ccedil;a &ldquo;candidatura cidad&atilde;&rdquo;
+&lt;/titulo&gt;</pre>
+					</td>
+				</tr>
+			</table>
+			<table cellpadding="2" cellspacing="2">
+				<tr>
+					<td style="border: none; padding: 0in">
+						<pre class="western">&lt;original_url&gt;
+http://www.legislativas2015.pt/2015/04/19/partido-livre-muda-nome-e-lanca-candidatura-cidada/
+&lt;/original_url&gt;</pre>
+					</td>
+				</tr>
+			</table>
+			<pre class="western">&lt;data&gt;2015-04-19 21:53:31&lt;/data&gt;</pre>
+			<table cellpadding="2" cellspacing="2">
+				<tr>
+					<td style="border: none; padding: 0in">
+						<pre class="western">&lt;final_url&gt;
+http://www.legislativas2015.pt/2015/04/19/partido-livre-muda-nome-e-lanca-candidatura-cidada/
+&lt;/final_url&gt;</pre>
+					</td>
+				</tr>
+			</table>
+			<pre class="western">&lt;/response&gt;</pre>
+		</td>
+	</tr>
+</table>
+<pre class="western"></pre><p style="margin-top: 0.17in; page-break-after: avoid">
+<font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">GET
+noticia/:id</font></font></p>
+<p>Devolve a not&iacute;cia de id :id</p>
+<p><a href="http://eleicoes2015.my.to/api/noticia/12">http://eleicoes2015.my.to/api/noticia/12</a></p>
+<pre class="western">{
+    &quot;id&quot;: 12,
+    &quot;fonte&quot;: &quot;Google News&quot;,
+    &quot;titulo&quot;: &quot;CDS renova presen\u00e7a na Internet antes das elei\u00e7\u00f5es - Observador&quot;,
+    &quot;original_url&quot;: &quot;http:\/\/news.google.com\/news\/url?sa=t&amp;fd=R&amp;ct2=pt-PT_pt&amp;usg=AFQjCNFuq5IJtWEnNfM31I8wfw2UnYn-OQ&amp;clid=c3a7d30bb8a4878e06b80cf16b898331&amp;cid=52779256990968&amp;ei=77E3VfCbMOqNaanigfAJ&amp;url=http:\/\/observador.pt\/2015\/04\/22\/cds-renova-presenca-na-internet-antes-das-eleicoes\/&quot;,
+    &quot;data&quot;: &quot;2015-04-22 13:32:54&quot;,
+    &quot;final_url&quot;: &quot;http:\/\/observador.pt\/2015\/04\/22\/cds-renova-presenca-na-internet-antes-das-eleicoes\/&quot;
+}</pre><p style="margin-top: 0.17in; page-break-after: avoid">
+<font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">POST
+noticia</font></font></p>
+<p>Insere uma nova not&iacute;cia. Os valores dos campos da not&iacute;cia
+s&atilde;o enviados sob a forma de um array em JSON:</p>
+<pre class="western">{
+    &quot;fonte&quot;: &quot;Teste&quot;,
+    &quot;titulo&quot;: &quot;Cavaco Silva anucia finalmente a data das elei&ccedil;&otilde;es&quot;,
+    &quot;data&quot;: &quot;2015-05-05 13:32:54&quot;,
+    &quot;final_url&quot;: &quot;http://asminhasnoticias.com/&quot;
+}</pre><p>
+Neste caso a not&iacute;cia &eacute; inserida com sucesso se a
+resposta contiver o novo id da not&iacute;cia inserida:</p>
+<pre class="western">{
+    &quot;fonte&quot;: &quot;Teste&quot;,
+    &quot;titulo&quot;: &quot;Cavaco Silva anucia finalmente a data das elei\u00e7\u00f5es&quot;,
+    &quot;data&quot;: &quot;2015-05-05 13:32:54&quot;,
+    &quot;final_url&quot;: &quot;http:\/\/asminhasnoticias.com\/&quot;,
+    <b>&quot;id&quot;: 162</b>
+}</pre><p style="margin-top: 0.17in; page-break-after: avoid">
+<font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">PUT
+noticia/:id</font></font></p>
+<p>Actualiza a informa&ccedil;&atilde;o relativa a uma not&iacute;cia
+j&aacute; presente no sistema. Neste caso deve-se acrescentar o ID da
+not&iacute;cia no URL que se pretende actualizar:</p>
+<p>Toda a nova informa&ccedil;&atilde;o relativa &agrave; not&iacute;cia
+deve seguir em formato JSON no corpo da mensagem</p>
+<p>Exemplo: PUT http://eleicoes2015.my.to/api/noticia/162</p>
+<pre class="western">{
+    &quot;fonte&quot;: &quot;Teste&quot;,
+    &quot;titulo&quot;: &quot;Cavaco Silva enganou-se na data das elei&ccedil;&otilde;es!&quot;,
+    &quot;data&quot;: &quot;2015-05-07 13:32:54&quot;,
+    &quot;final_url&quot;: &quot;http://asminhasnoticias.com/&quot;
+}
+</pre><p>
+A resposta conter&aacute; o ID correcto em caso de &ecirc;xito:</p>
+<pre class="western">
+{
+    &quot;id&quot;: 162,
+    &quot;fonte&quot;: &quot;Teste&quot;,
+    &quot;titulo&quot;: &quot;Cavaco Silva enganou-se na data das elei\u00e7\u00f5es&quot;,
+    &quot;original_url&quot;: null,
+    &quot;data&quot;: &quot;2015-05-07 13:32:54&quot;,
+    &quot;final_url&quot;: &quot;http:\/\/asminhasnoticias.com\/&quot;
+}</pre><p style="margin-top: 0.17in; page-break-after: avoid">
+<font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">DELETE
+noticia/:id</font></font></p>
+<p>Para apagar uma not&iacute;cia usa-se o comando DELETE da seguinte
+forma, por exemplo:</p>
+<p>DELETE <a href="http://eleicoes2015.my.to/api/noticia/162">http://eleicoes2015.my.to/api/noticia/162</a></p>
+<p>Em caso de sucesso, o registo na BD apagado &eacute; devolvido:</p>
+<pre class="western">{
+    &quot;id&quot;: 162,
+    &quot;fonte&quot;: &quot;Teste&quot;,
+    &quot;titulo&quot;: &quot;Cavaco Silva enganou-se na data das elei\u00e7\u00f5es&quot;,
+    &quot;original_url&quot;: null,
+    &quot;data&quot;: &quot;2015-05-07 13:32:54&quot;,
+    &quot;final_url&quot;: &quot;http:\/\/asminhasnoticias.com\/&quot;
+}</pre><p>
+Se fizermos um GET <a href="http://eleicoes2015.my.to/api/noticia/162">http://eleicoes2015.my.to/api/noticia/162</a>
+a resposta ser&aacute;:</p>
+<pre class="western">{
+
+}</pre><p>
+O que prova que a not&iacute;cia foi correctamente apagada !</p>
+<h1>PARTIDO</h1>
+<p style="margin-top: 0.17in; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">GET
+partido/</font></font></p>
+<p style="margin-top: 0.17in; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">GET
+partido/:id</font></font></p>
+<p style="margin-top: 0.17in; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">POST
+partido</font></font></p>
+<p style="margin-top: 0.17in; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">PUT
+partido/:id</font></font></p>
+<p style="margin-top: 0.17in; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">DELETE
+partido/:id</font></font></p>
+<h1>TAGS DA NOTICIA</h1>
+<p style="margin-top: 0.17in; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">GET
+noticia/:id/tag</font></font></p>
+<p style="margin-top: 0.17in; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">GET
+noticia/:id/tag/:id</font></font></p>
+<p style="margin-top: 0.17in; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">POST
+noticia/:id/tag/</font></font></p>
+<p style="margin-top: 0.17in; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">PUT
+partido/:id/tag/:id</font></font></p>
+<p style="margin-top: 0.17in; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">DELETE
+partido/:id/tag/:id</font></font></p>
+<h1>TAGS</h1>
+<p style="margin-top: 0.17in; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">GET
+tag/</font></font></p>
+<p style="margin-top: 0.17in; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">GET
+tag/:id</font></font></p>
+<p style="margin-top: 0.17in; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">POST
+tag</font></font></p>
+<p style="margin-top: 0.17in; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">PUT
+tag/:id</font></font></p>
+<p style="margin-top: 0.17in; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt">DELETE
+tag/:id</font></font></p>
+<h1><br/>
+<br/>
+
+</h1>
+<p><br/>
+<br/>
+
+</p>
+<pre class="western">
+
+</pre>
+<table width="642" cellpadding="2" cellspacing="0">
+	<col width="156">
+	<col width="156">
+	<col width="156">
+	<col width="156">
+	<tr valign="top">
+		<td width="156" style="border: 1.00pt solid #000000; padding: 0.02in 0.08in">
+			<table cellpadding="0" cellspacing="0">
+				<tr valign="top">
+					<td style="border: none; padding: 0in">
+						<p lang="en-US" class="default"><font size="2" style="font-size: 11pt"><b>Recurso
+						</b></font>
+						</p>
+					</td>
+					<td style="border: none; padding: 0in">
+						<p class="default">&nbsp;</p>
+					</td>
+					<td style="border: none; padding: 0in">
+						<p class="default">&nbsp;</p>
+					</td>
+					<td style="border: none; padding: 0in">
+						<p class="default">&nbsp;</p>
+					</td>
+				</tr>
+			</table>
+			<p><br/>
+<br/>
+
+			</p>
+		</td>
+		<td width="156" style="border-top: 1.00pt solid #000000; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0.02in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p lang="en-US" class="msonormal" style="margin-bottom: 0in"><b>M&eacute;todo</b></p>
+		</td>
+		<td width="156" style="border-top: 1.00pt solid #000000; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0.02in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p lang="en-US" class="msonormal" style="margin-bottom: 0in"><b>Par&acirc;metros</b></p>
+		</td>
+		<td width="156" style="border-top: 1.00pt solid #000000; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0.02in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p lang="en-US" class="msonormal" style="margin-bottom: 0in"><b>Resultado</b></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: 1.00pt solid #000000; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0.08in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">noticia/:id</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">PUT</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">Informa&ccedil;&atilde;o
+			com que deve ser a actualizada a not&iacute;cia de ID :id (UPDATE)</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">Devolve a
+			informa&ccedil;&atilde;o actualizada da not&iacute;cia :id</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: 1.00pt solid #000000; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0.08in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">noticia/:id</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">DELETE</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">Id da not&iacute;cia</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">Informa&ccedil;&atilde;o
+			da not&iacute;cia</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: 1.00pt solid #000000; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0.08in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">partido</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">GET</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">sem argumentos</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">listagem de
+			partidos</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: 1.00pt solid #000000; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0.08in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">partido/:id</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">GET</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">ID do partido</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">Devolve o partido
+			de ID :id</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: 1.00pt solid #000000; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0.08in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">partido</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">POST</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">Informa&ccedil;&atilde;o
+			para criar um novo partido</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">Novo partido com o
+			novo ID</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: 1.00pt solid #000000; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0.08in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">partido/:id</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">PUT</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">Informa&ccedil;&atilde;o
+			com que actualizar o partido de ID :id</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">Nova informa&ccedil;&atilde;o
+			do partido de ID :id</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: 1.00pt solid #000000; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0.08in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">partido/:id</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">DELETE</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">ID do partido a
+			ser eliminado</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">partido eliminado</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: 1.00pt solid #000000; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0.08in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">noticia/:id/tag</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">GET</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">ID da noticia</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">Todas as tags da
+			noticia de ID :id</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: 1.00pt solid #000000; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0.08in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">noticia/:id/tag</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">POST</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">ID da noticia no
+			URL com as novas tags a serem enviadas no corpo da mensagem</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">Nova noticia com
+			as novas tags</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: 1.00pt solid #000000; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0.08in; padding-right: 0.08in">
+			<p lang="en-US" class="msonormal" style="margin-bottom: 0in">noticia/:id/tag/:tag_id</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">GET</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">ID da noticia</p>
+			<p class="msonormal" style="margin-bottom: 0in">ID da tag</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">Devolve a tag de
+			ID :tag_id dada a noticia de ID :id</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: 1.00pt solid #000000; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0.08in; padding-right: 0.08in">
+			<p lang="en-US" class="msonormal" style="margin-bottom: 0in">noticia/:id/tag/:tag_id</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">DELETE</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">ID da noticia</p>
+			<p class="msonormal" style="margin-bottom: 0in">ID da tag</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">Tag eliminada 
+			</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: 1.00pt solid #000000; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0.08in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">tag</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">GET</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">nenhum</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">Todas as tags, com
+			os respectivos Ids e a contagem das noticias em que cada uma
+			aparece</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: 1.00pt solid #000000; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0.08in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">tag/:tag_id</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">GET</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">id da tag :tag_id</p>
+		</td>
+		<td width="156" style="border-top: none; border-bottom: 1.00pt solid #000000; border-left: none; border-right: 1.00pt solid #000000; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0.08in">
+			<p class="msonormal" style="margin-bottom: 0in">Devolve a tag com
+			a sua contagem</p>
+		</td>
+	</tr>
+</table>
+<p class="msonormal">&nbsp;</p>
+</body>
+</html>

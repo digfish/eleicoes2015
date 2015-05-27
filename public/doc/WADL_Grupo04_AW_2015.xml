@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <resources base="http://eleicoes2015.my.to/api/">
+		<resource path="noticia/">
+			<method name="GET" id="Noticia::get($noticia)">
+				<request>
+					<param name="term" type="xsd:string" style="query" required="false"/>
+					<param name="format" type="xsd:string" style="query" required="false"/>
+					<param name="source" type="xsd:string" style="query" required="false"/>
+					<param name="page" type="xsd:int" style="query" required="false"/>
+					<param name="qty" type="xsd:int" style="query" required="false"/>
+				</request> 
+				<response status="200"> 
+					<representation mediaType="application/json"/> 
+					<representation mediaType="application/xml"/> 
+				</response>
+			</method>
+			<method name="POST" id="Noticia::post($noticia)">
+				<request>
+					<representation mediaType="application/json">
+					<representation mediaType="application/xml">
+				</request> 
+				<response status="200"> 
+					<representation mediaType="application/json"/> 
+					<representation mediaType="application/xml"/> 
+				</response>
+			</method>
+			<resource path=":id/">
+				<method name="GET" id="Noticia::get($noticia_id)">
+					<request>
+					</request> 
+					<response status="200"> 
+						<representation mediaType="application/json"/> 
+						<representation mediaType="application/xml"/> 
+					</response>
+				</method>
+				<method name="PUT" id="Noticia::put($noticia_id)">
+					<request>
+						<representation mediaType="application/json">
+						<representation mediaType="application/xml">
+					</request> 
+					<response status="200"> 
+						<representation mediaType="application/json"/> 
+						<representation mediaType="application/xml"/> 
+					</response>
+				</method>
+				<method name="DELETE" id="Noticia::delete($noticia_id)">
+					<request>
+					</request> 
+					<response status="200"> 
+						<representation mediaType="application/json"/> 
+						<representation mediaType="application/xml"/> 
+					</response>
+				</method>
+			</resource>
+			<resource path="tag/">
+					<method name="GET" id="Noticia::get($tag)">
+						<request>
+							<param name="page" type="xsd:int" style="query" required="false"/>
+							<param name="qty" type="xsd:int" style="query" required="false"/>
+						</request> 
+						<response status="200"> 
+							<representation mediaType="application/json"/> 
+							<representation mediaType="application/xml"/> 
+						</response>
+					</method>
+					<method name="POST" id="Noticia::post($tag)">
+						<request>
+							<representation mediaType="application/json">
+							<representation mediaType="application/xml">
+						</request> 
+						<response status="200"> 
+							<representation mediaType="application/json"/> 
+							<representation mediaType="application/xml"/> 
+						</response>
+					</method>
+					<resource path=":tag_id/">
+						<method name="GET" id="Noticia::get($tag_id)">
+							<request>
+								<param name="page" type="xsd:int" style="query" required="false"/>
+								<param name="qty" type="xsd:int" style="query" required="false"/>
+							</request> 
+							<response statuds="200"> 
+								<representation mediaType="application/json"/> 
+								<representation mediaType="application/xml"/> 
+							</response>
+						</method>
+						<method name="DELETE" id="Noticia::delete($tag_id)">
+							<request>
+							</request> 
+							<response status="200"> 
+								<representation mediaType="application/json"/> 
+								<representation mediaType="application/xml"/> 
+							</response>
+						</method>
+					</resource>
+			</resource>
+		</resource>
+		<resource path="partido/">
+			<method name="POST" id="Partido::post($partido)">
+				<request>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+				</request> 
+                <response status="200">
+					<representation mediaType="application/xml"/>
+					<representation mediaType="application/json"/>
+                </response>	
+            </method>
+			<method name="GET" id="Partido::get($partido)">
+				<request>
+					<param name="term" type="xsd:string" style="query" required="false"/>
+					<param name="format" type="xsd:string" style="query" required="false"/>
+					<param name="page" type="xsd:int" style="query" required="false"/>
+					<param name="qty" type="xsd:int" style="query" required="false"/>
+				</request> 
+                <response status="200">
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                </response>	
+            </method>
+			<resource path=":id/">
+				<method name="GET" id="Partido::get($partido_id)">
+					<request>
+					</request> 
+					<response status="200">
+						<representation mediaType="application/json"/>
+						<representation mediaType="application/xml"/>
+					</response>
+				</method>
+				<method name="PUT" id="Partido::put($partido_id)">
+					<request>
+						<representation mediaType="application/json"/>
+						<representation mediaType="application/xml"/>
+					</request> 
+					<response status="200">
+						<representation mediaType="application/json"/>
+						<representation mediaType="application/xml"/>
+					</response>
+				</method>
+				<method name="DELETE" id="Partido::delete($partido_id)">
+					<request>
+					</request> 
+					<response status="200">
+						<representation mediaType="application/json"/>
+						<representation mediaType="application/xml"/>
+					</response>
+				</method>
+			</resource>
+		</resource>
+		<resource path="tag/">
+			<method name="GET" id="Tag::get($tag)">
+				<request>
+				</request> 
+                <response status="200">
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                </response>	
+            </method>
+			<method name="POST" id="Tag::post($tag)">
+					<request>
+						<representation mediaType="application/json"/>
+						<representation mediaType="application/xml"/>
+					</request> 
+					<response status="200">
+						<representation mediaType="application/xml"/>
+						<representation mediaType="application/json"/>
+					</response>	
+			</method>
+			<resource path=":tag_id">
+				<method name="GET" id="Tag::get($tag_id)">
+					<request>
+					</request> 
+					<response status="200">
+						<representation mediaType="application/json"/>
+						<representation mediaType="application/xml"/>
+					</response>	
+				</method>
+				<method name="PUT" id="Tag::put($tag_id)">
+					<request>
+						<representation mediaType="application/json"/>
+						<representation mediaType="application/xml"/>
+					</request> 
+					<response status="200">
+						<representation mediaType="application/json"/>
+						<representation mediaType="application/xml"/>
+					</response>
+				</method>
+				<method name="DELETE" id="Tag::delete($tag_id)">
+					<request>
+					</request> 
+					<response status="200">
+						<representation mediaType="application/json"/>
+						<representation mediaType="application/xml"/>
+					</response>
+			</method>
+				
+				
+			</resource>
+
+			
+			
+		</resource>
+	</resources>
+</application>		
