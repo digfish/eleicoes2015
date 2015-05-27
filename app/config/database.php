@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'eleicoes2015',
-			'username'  => 'eleicoes2015',
-			'password'  => '5102seociele',
+			'database'  => 'xxx',
+			'username'  => 'xx',
+			'password'  => 'xxx',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
